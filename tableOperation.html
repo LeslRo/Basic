@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> new document </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gbk"/>
+    <script type="text/javascript">
+
+        window.onload = function(){
+
+            // 鼠标移动改变背景,可以通过给每行绑定鼠标移上事件和鼠标移除事件来改变所在行背景色。
+            var line = document.getElementsByTagName("tr");
+            for(var i=0;i<line.length;i++){
+                bgChange(line[i]);
+            }
+        function bgChange(obj){
+            obj.onmouseover = function(){
+                obj.style.backgroundColor="#f2f2f2";
+            };
+            obj.onmouseout = function(){
+                obj.style.backgroundColor = '#fff';
+            };
+        };
+        };
+
+        var num=2;
+        function createa(obj) {
+            num++;
+            var table = document.getElementById("table"); ///var table = document.table
+            var tr = document.createElement("tr");
+            var td1 = document.createElement("td");
+            td1.innerHTML = "xh00"+num;
+            var td2 = document.createElement("td");
+            td2.innerHTML = "第"+num+"个学生";
+            var td3 = document.createElement("td");
+            // var href = document.createElement("a");
+            // href.href = "javascript:;";
+            // href.onclick=dele();
+            // href.onclick = dele(this);
+            // href.innerHTML= "删除";
+            td3.innerHTML="<a href='javascript:;' onclick='dele(this)' >删除</a>";
+            table.appendChild(tr);
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tr.appendChild(td3);
+
+        }
+
+
+        // 创建删除函数
+        function dele(obj){
+            var tr=obj.parentNode.parentNode;
+            tr.parentNode.removeChild(tr);
+            // var node=document.getElementsByTagName("td");
+            // if(node.innerHTML === "删除"){
+            //     var pnode = node.parentNode;
+            //     // document.write(pnode);
+            //     var x= pnode.childNodes;
+            //     for(var i=0;i<x.length;i++){
+            //        var y= pnode.removeChild(x[i]);
+            //        y=null;
+            //     }
+            // }
+
+        }
+
+
+
+    </script>
+</head>
+<body>
+<table border="1" width="50%" id="table">
+    <tr>
+        <th>学号</th>
+        <th>姓名</th>
+        <th>操作</th>
+    </tr>
+
+    <tr>
+        <td>xh001</td>
+        <td>王小明</td>
+        <td><a href="javascript:;" onclick="dele(this)" >删除</a></td>   <!--在删除按钮上添加点击事件  -->
+    </tr>
+
+    <tr>
+        <td>xh002</td>
+        <td>刘小芳</td>
+        <td><a href="javascript:;"  onclick="dele(this)">删除</a></td>   <!--在删除按钮上添加点击事件  -->
+    </tr>
+
+</table>
+<input type="button" value="添加一行" onclick=" createa(this)" />   <!--在添加按钮上添加点击事件  -->
+</body>
+</html>
